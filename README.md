@@ -6,7 +6,7 @@ Check original repository for usage and detailed configurations
 
 # Changes
 
-When use this plugin with cp949 window 10 environment, some characters are not represented properly.
+Some characters are not represented properly when use with cp949 window 10 environment.
 
 # Installation
 
