@@ -1,63 +1,50 @@
 # vim-find-everything
 
-Use [everything](https://www.voidtools.com/) in vim.
+This repo folk from 'voldikss/vim-find-everything'
 
-# Features
+Check original repository for usage and detailed configurations
 
-- Windows only(?)
-- Asynchronous searching
-- Vim8's popup support
+# Changes
 
-# Install
+When use this plugin with cp949 window 10 environment, some characters are not represented properly.
+
+# Installation
+
+Install "Everything" from voidtool
+
+	- Install both GUI version (Everything.exe) and command-line tool (es.exe)
+
+Change gvim guifont setting with which has extended character set (e.g. D2Coding font from naver.com)
+
 ```
-Plug 'voldikss/vim-find-everything'
-```
+	$ edit ~/.vimrc
 
-# Options
-
-```vim
-" Define es.exe executable path
-let g:fe_es_exe = get(g:, 'fe_es_exe', 'es.exe')
-
-" Define which file type should be opened with vim when press enter.
-let g:fe_openfile_filter = get(g:, 'fe_openfile_filter', ['txt', 'vim'])
-
-" Define only show these file types when everything return results.
-let g:fe_result_filter = get(g:, 'fe_result_filter', {'vim':1, 'txt':1, 'c':1, 'h':1, 'py':1})
-
-" Define es.exe option.
-let g:fe_es_options = get(g:, 'fe_es_options', '')
-
-" Define result window width
-let g:fe_window_width = get(g:, 'fe_window_width', 85)
-
-" Define result window height
-let g:fe_window_height = get(g:, 'fe_window_height', 15)
-
-" Define result window type, either 'split' or 'popup'
-let g:fe_window_type = get(g:, 'fe_window_type', 'split')
-
-let g:fe_default_loc = get(g:, 'fe_default_loc', '')
+	set guifont=D2Coding:h13
 ```
 
-# Commands
+Change cmd.exe default codepage to UTF-8
 
-- `:FE[!] [pattern]`
+```
+	$ run 'regedit'
 
-- `:FET`
+	find '컴퓨터\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor'
 
-# Demos
+	add variable 'Autorun'  (Create the variable as string type if not exist)
 
-![](https://user-images.githubusercontent.com/20282795/92328733-5e3beb80-f095-11ea-9a0c-80d7dc819bdc.png)
+	set vaule to 'chcp 65001'
+```
 
-![](https://user-images.githubusercontent.com/20282795/92328735-6005af00-f095-11ea-88e5-f9da2ff3b57f.png)
+Add plugin to .vimrc (vim-plug)
 
+```
+	call plug#begin('~/.vim/plugged')
+	...
+	Plug 'juehyun/vim-find-everything'
+	...
+	call plug#end()
+```
 
-# Credits
+Execute ":PlugInstall" at gvim command-line
 
-- Thank chao wang for developing [FindEverything](https://www.vim.org/scripts/script.php?script_id=3499)
-- Thank js79903 for sponsoring
+Execute ":FE <pattern>"
 
-# References
-
-- [voldikss/Leaderf-everything](https://github.com/voldikss/Leaderf-everything)

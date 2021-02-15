@@ -58,9 +58,7 @@ function! fe#StartSearch(pattern, filter)
   let cmd = printf('%s %s %s %s', cmd, g:fe_es_options, dir, pattern)
   let s:cache = ''
 
-" (juehyun) do not use job_start() method to represent japanese extended-kanji properly (dont know why)
-"  if exists('*job_start')
-  if 0
+  if exists('*job_start')
     call job_start(cmd, #{
       \ out_cb: function('s:On_Out_Or_Exit', [a:filter, 'out']),
       \ exit_cb: function('s:On_Out_Or_Exit', [a:filter, 'exit']),
@@ -88,10 +86,8 @@ function! s:On_Out_Or_Exit(filter, ...) abort
   endif
 
   " HACK!!!
-" (juehyun) do not convert encoding method to represent japanese extended-kanji properly (dont know why)
-"  let cp = libcallnr('kernel32.dll', 'GetACP', 0)
-"  let s:cache = iconv(s:cache, printf('cp%d', cp), &encoding)
-  let s:cache = iconv(s:cache, 'utf-8', &encoding)
+  let cp = libcallnr('kernel32.dll', 'GetACP', 0)
+  let s:cache = iconv(s:cache, printf('cp%d', cp), &encoding)
   if empty(s:cache)
     call fe#util#show_msg('No files found!', 'error')
     return
