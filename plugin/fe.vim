@@ -17,7 +17,7 @@ endif
 let g:fe_es_exe = get(g:, 'fe_es_exe', 'es.exe')
 
 " Define which file type should be opened with vim when press enter.
-let g:fe_openfile_filter = get(g:, 'fe_openfile_filter', ['txt', 'vim'])
+"let g:fe_openfile_filter = get(g:, 'fe_openfile_filter', ['txt', 'vim']) "juehyun:removed
 
 " Define only show these file types when everything return results.
 let g:fe_result_filter = get(g:, 'fe_result_filter', {'vim':1, 'txt':1, 'c':1, 'h':1, 'py':1})

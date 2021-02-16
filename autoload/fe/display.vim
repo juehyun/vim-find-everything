@@ -118,15 +118,25 @@ endfunction
 
 " Open_Filter
 function! s:Open_Filter(fname)
-  let l:filter = g:fe_openfile_filter
-  let current_ext = fnamemodify(a:fname, ":e")
-  for ext in l:filter
-    if ext == current_ext
-      call s:Open_Internal(a:fname)
-      return
-    endif
-  endfor
-  call s:Open_External(a:fname)
+
+  "juehyun : text file be opened by vim, others are sent windows system
+  let l:file_mimebrief = system('file -ib ' . shellescape( fnamemodify(a:fname, ":8")))
+  if ( l:file_mimebrief =~# '^text/plain' )
+    call s:Open_Internal(a:fname)
+  else
+    call s:Open_External(a:fname)
+  endif
+
+"  let l:filter = g:fe_openfile_filter
+"  let current_ext = fnamemodify(a:fname, ":e")
+"  for ext in l:filter
+"    if ext == current_ext
+"      call s:Open_Internal(a:fname)
+"      return
+"    endif
+"  endfor
+"  call s:Open_External(a:fname)
+
 endfunction
 
 " Open_Everything_File
